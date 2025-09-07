@@ -1,0 +1,126 @@
+#home {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: calc(100vh - 5rem); // Ocupa a tela inteira menos a altura do header
+    padding: 1.5rem;
+    overflow: hidden;
+
+    .home__container {
+        display: flex;
+        flex-wrap: wrap; // Permite que os itens quebrem para a linha de baixo em telas pequenas
+        justify-content: space-between;
+        align-items: center;
+        gap: 2rem;
+        max-width: 1200px;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .home__info {
+        flex: 1; // Permite que o container de texto cresça
+        min-width: 300px; // Largura mínima antes de quebrar a linha
+
+        h1 {
+            color: $white-normal;
+            font-size: clamp(2rem, 5vw, 3rem); // Fonte responsiva
+            font-weight: 700;
+            line-height: 1.2;
+
+            .home__info-job {
+                display: block; // Garante que o texto animado fique abaixo
+                color: $green-normal;
+                font-size: clamp(1.25rem, 4vw, 1.75rem);
+                margin-top: 0.5rem;
+
+                &::after {
+                    content: '|';
+                    margin-left: 0.3rem;
+                    opacity: 1;
+                    animation: blink 0.7s infinite;
+                }
+            }
+        }
+
+        p {
+            color: $grey-light;
+            font-size: clamp(1rem, 2.5vw, 1.1rem); // Fonte responsiva
+            line-height: 1.6;
+            margin: 1.5rem 0;
+            max-width: 600px; // Limita a largura do parágrafo para melhor leitura
+        }
+
+        .home__info-social {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+
+            a img {
+                width: 2rem;
+                height: 2rem;
+                transition: transform 0.3s ease;
+
+                &:hover {
+                    transform: translateY(-5px);
+                }
+            }
+        }
+    }
+
+    .home__image-container {
+        flex: 1;
+        min-width: 300px;
+        text-align: center; // Centraliza a imagem no container
+    }
+
+    .home__image {
+        max-width: 100%;
+        height: auto;
+        animation: float 4s ease-in-out infinite; // Adiciona a animação de flutuar
+    }
+}
+
+// Animação para o cursor piscando
+@keyframes blink {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
+
+// Animação para a imagem flutuando
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+// Media Query para telas menores (mobile)
+@media (max-width: 768px) {
+    #home {
+        min-height: auto; // Altura automática em telas pequenas
+        padding-top: 8rem; // Espaço para o header
+        padding-bottom: 4rem;
+
+        .home__container {
+            flex-direction: column-reverse; // Inverte a ordem: imagem acima do texto
+            text-align: center;
+        }
+
+        .home__info {
+            p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .home__info-social {
+                justify-content: center; // Centraliza os ícones sociais
+            }
+        }
+    }
+}

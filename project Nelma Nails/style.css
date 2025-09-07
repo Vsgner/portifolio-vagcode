@@ -1,0 +1,1118 @@
+/* =================================================== */
+/* --- 1. ESTILOS GLOBAIS E FONTES --- */
+/* =================================================== */
+
+/* Importa a fonte Poppins para o painel e Playfair para as páginas de login */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilo base para páginas de login/cadastro */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url('img/background.jpg') center/cover no-repeat fixed;
+    font-family: 'Playfair Display', serif;
+}
+
+/* Estilo base para páginas internas (painel, agendamento) */
+.dashboard-body {
+    background-color: #f8f9fa;
+    font-family: 'Poppins', sans-serif;
+    display: block; /* Remove o flex para permitir rolagem normal */
+}
+
+
+/* =================================================== */
+/* --- 2. CONTAINERS DE LAYOUT --- */
+/* =================================================== */
+
+/* Container para formulários de login, cadastro, etc. */
+.container {
+    width: 90%; /* Responsivo */
+    max-width: 420px; /* Largura máxima */
+    background-color: transparent;
+    border: 2px solid rgba(247, 243, 243, 0.4);
+    border-radius: 12px;
+    color: #734653;
+    padding: 30px 25px; /* Padding ajustado para mobile */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+}
+
+/* Container para páginas com tabelas (Meus Agendamentos, Admin) */
+.container-largo {
+    width: 95%;
+    max-width: 900px;
+    margin: 30px auto; /* Centraliza e adiciona margem */
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(95, 108, 128, 0.12);
+}
+
+/* Container do painel do cliente e admin */
+.dashboard-container {
+    width: 95%;
+    max-width: 800px;
+    margin: 30px auto;
+    background-color: #ffffff;
+    border-radius: 24px;
+    padding: 25px;
+    box-shadow: 0 8px 32px rgba(95, 108, 128, 0.12);
+    color: #333;
+}
+
+/* Container da página de agendamento */
+.agendar-container {
+    width: 95%;
+    max-width: 500px;
+    margin: 30px auto;
+    background-color: #ffffff;
+    border-radius: 24px;
+    padding: 20px;
+    box-shadow: 0 8px 32px rgba(95, 108, 128, 0.12);
+    color: #333;
+}
+
+
+/* =================================================== */
+/* --- 3. ELEMENTOS DE FORMULÁRIO E BOTÕES --- */
+/* =================================================== */
+
+.container h1 {
+    color: #D96684;
+    font-size: 32px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.input-box {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 30px 0;
+}
+
+.input-box input {
+    width: 100%;
+    height: 100%;
+    padding: 20px 45px 20px 20px;
+    border: 2px solid rgba(115, 70, 83, 0.5);
+    outline: none;
+    border-radius: 40px;
+    background-color: transparent;
+    color: #734653;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif; /* Consistência */
+}
+
+.input-box input::placeholder {
+    color: rgba(115, 70, 83, 0.8);
+    font-weight: 400;
+}
+
+.input-box i {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: #734653;
+}
+
+.input-box .toggle-password {
+    cursor: pointer;
+}
+
+.remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    margin: -15px 0 15px;
+    flex-wrap: wrap; /* Permite quebrar linha em telas pequenas */
+    gap: 10px;
+}
+
+.remember-forgot label {
+    display: flex;
+    align-items: center;
+    accent-color: #D96684;
+}
+
+.remember-forgot label input {
+    margin-right: 5px;
+}
+
+.remember-forgot a,
+.register-link a,
+.voltar-link a {
+    color: #7E9976;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.remember-forgot a:hover,
+.register-link a:hover,
+.voltar-link a:hover {
+    text-decoration: underline;
+}
+
+.btn {
+    width: 100%;
+    height: 50px;
+    background-color: #D96684;
+    border: none;
+    border-radius: 40px;
+    font-size: 16px;
+    color: #F7F3F3;
+    cursor: pointer;
+    font-weight: 700;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    text-align: center;
+    line-height: 50px;
+    text-decoration: none;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background-color: transparent;
+    border: 2px solid #D96684;
+    color: #D96684;
+}
+
+.register-link {
+    font-size: 14.5px;
+    text-align: center;
+    margin: 20px 0 15px;
+}
+
+.password-feedback {
+    font-size: 13px;
+    color: #D90429;
+    text-align: left;
+    margin-top: -20px;
+    margin-bottom: 15px;
+    height: 15px;
+}
+
+
+/* =================================================== */
+/* --- 4. COMPONENTES DO PAINEL (DASHBOARD) --- */
+/* =================================================== */
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap; /* Responsividade */
+    gap: 15px;
+}
+
+.dashboard-header .user-info h2 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.dashboard-header .user-info p {
+    font-size: 16px;
+    color: #7f8c8d;
+}
+
+.dashboard-header .logout-button {
+    background-color: #ecf0f1;
+    color: #c0392b;
+    font-size: 22px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.dashboard-header .logout-button:hover {
+    background-color: #c0392b;
+    color: #ffffff;
+    transform: rotate(15deg) scale(1.1);
+}
+
+.services-section h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.dashboard-card {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 25px;
+    text-decoration: none;
+    color: #333;
+    transition: all 0.3s ease;
+    border: 1px solid #e9ecef;
+    display: flex; /* Flexbox para alinhar conteúdo */
+    flex-direction: column;
+    gap: 15px;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 20px rgba(95, 108, 128, 0.1);
+    border-color: #d96684;
+}
+
+.dashboard-card .card-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0; /* Impede que o ícone encolha */
+}
+
+.dashboard-card .card-icon i {
+    font-size: 30px;
+}
+
+.dashboard-card h4 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.dashboard-card p {
+    font-size: 14px;
+    color: #7f8c8d;
+    line-height: 1.5;
+}
+
+/* Painel Admin - KPIs e Colunas */
+.kpi-section {
+    margin-bottom: 30px;
+}
+
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.kpi-card {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border: 1px solid #e9ecef;
+}
+
+.kpi-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+.kpi-icon i { font-size: 24px; }
+.kpi-info { display: flex; flex-direction: column; }
+.kpi-value { font-size: 22px; font-weight: 700; color: #2c3e50; }
+.kpi-title { font-size: 14px; color: #7f8c8d; }
+
+.dashboard-columns {
+    display: grid;
+    grid-template-columns: 1fr; /* Padrão mobile: uma coluna */
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.proximos-agendamentos ul { list-style: none; }
+.proximos-agendamentos li {
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 12px;
+    border: 1px solid #e9ecef;
+}
+.horario-cliente { display: flex; align-items: center; gap: 15px; margin-bottom: 5px; flex-wrap: wrap; }
+.horario { font-size: 18px; font-weight: 700; color: #d96684; }
+.cliente { font-size: 16px; font-weight: 500; color: #34495e; }
+.servico-info { font-size: 14px; color: #7f8c8d; }
+
+.sem-agendamentos-hoje {
+    text-align: center;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    color: #7f8c8d;
+}
+
+
+/* =================================================== */
+/* --- 5. CARROSSEL / SLIDER --- */
+/* =================================================== */
+
+.slider-container {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+.slider-wrapper {
+    display: flex;
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    min-width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.slide-content { text-align: center; }
+.slide-content h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; text-shadow: 1px 1px 3px rgba(0,0,0,0.2); }
+.slide-content p { font-size: 15px; margin-bottom: 15px; }
+
+.slide-button {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #333;
+    padding: 8px 18px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+.slide-button:hover { background-color: #ffffff; transform: scale(1.05); }
+
+/* Slide com foto de perfil */
+.slide-content-perfil {
+    display: flex;
+    flex-direction: column; /* Empilha em telas pequenas */
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    text-align: center;
+}
+
+.slide-image-perfil {
+    width: 100px; /* Menor para mobile */
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid rgba(255, 255, 255, 0.85);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    flex-shrink: 0;
+}
+
+.slide-text-perfil h3 { font-size: 22px; }
+.slide-text-perfil p { font-size: 16px; margin: 0; }
+
+/* Navegação do Slider */
+.slider-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.5);
+    color: #333;
+    border-radius: 50%;
+    width: 35px; /* Menor para mobile */
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 22px;
+    transition: background-color 0.3s ease;
+}
+.slider-nav:hover { background-color: rgba(255, 255, 255, 0.8); }
+#prev-slide { left: 10px; }
+#next-slide { right: 10px; }
+
+/* Paginação do Slider */
+.slider-pagination {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+}
+.pagination-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.pagination-dot.active { background-color: #ffffff; }
+
+
+/* =================================================== */
+/* --- 6. AGENDAMENTO E CALENDÁRIO --- */
+/* =================================================== */
+
+.agendar-header {
+    display: flex;
+    align-items: center;
+    position: relative;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.agendar-header .back-button {
+    position: absolute;
+    left: 0; /* Alinhado à esquerda */
+    top: 50%;
+    transform: translateY(-50%);
+    color: #333;
+    font-size: 28px;
+    text-decoration: none;
+}
+
+.agendar-header h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.form-step { margin-bottom: 25px; }
+.form-label-agendar { display: block; font-size: 16px; font-weight: 600; color: #34495e; margin-bottom: 12px; }
+
+.form-select-agendar,
+.form-input-agendar {
+    width: 100%;
+    height: 50px;
+    padding: 0 20px;
+    border-radius: 12px;
+    border: 1px solid #dfe4ea;
+    background-color: #f8f9fa;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.form-select-agendar:focus,
+.form-input-agendar:focus {
+    border-color: #d96684;
+    box-shadow: 0 0 0 3px rgba(217, 102, 132, 0.2);
+}
+
+#calendar-container {
+    background-color: #d96684;
+    color: #ffffff;
+    padding: 15px;
+    border-radius: 16px;
+    user-select: none;
+}
+
+.calendar-header { margin-bottom: 15px; }
+.calendar-header .calendar-current-date { font-size: 1.1rem; font-weight: 600; }
+.calendar-header i { font-size: 1.8rem; cursor: pointer; }
+
+.calendar-weekdays { display: grid; grid-template-columns: repeat(7, 1fr); font-weight: 600; margin-bottom: 10px; font-size: 0.8rem; text-align: center; }
+.calendar-days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; }
+.calendar-day {
+    padding: 8px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    line-height: 1.5;
+    font-size: 0.9rem;
+    text-align: center;
+}
+.calendar-day:not(.disabled):not(.selected):hover { background-color: rgba(255, 255, 255, 0.3); }
+.calendar-day.prev-date, .calendar-day.next-date { opacity: 0.5; }
+.calendar-day.disabled { opacity: 0.4; cursor: not-allowed; text-decoration: line-through; }
+.calendar-day.today { font-weight: bold; border: 2px solid rgba(255, 255, 255, 0.5); }
+.calendar-day.selected { background-color: #ffffff; color: #d96684; font-weight: 700; transform: scale(1.1); }
+
+.time-slots-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 10px;
+}
+
+.time-slots-placeholder {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: #7f8c8d;
+    font-size: 15px;
+    padding: 20px 0;
+}
+
+.time-slot-btn {
+    background-color: #f8f9fa;
+    border: 1px solid #dfe4ea;
+    color: #34495e;
+    padding: 12px 5px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    text-align: center;
+    transition: all 0.2s ease-in-out;
+}
+.time-slot-btn:hover { border-color: #d96684; color: #d96684; }
+.time-slot-btn.selected { background-color: #d96684; color: #ffffff; border-color: #d96684; transform: scale(1.05); }
+
+.btn-agendar {
+    width: 100%;
+    height: 55px;
+    background: linear-gradient(135deg, #d96684, #a6566f);
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
+    color: #F7F3F3;
+    cursor: pointer;
+    font-weight: 700;
+    font-family: 'Poppins', sans-serif;
+    box-shadow: 0 4px 15px rgba(217, 102, 132, 0.3);
+    margin-top: 15px;
+    transition: all 0.3s ease;
+}
+.btn-agendar:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(217, 102, 132, 0.4); }
+
+
+/* =================================================== */
+/* --- 7. TABELAS E EXIBIÇÃO DE DADOS --- */
+/* =================================================== */
+
+
+/* Wrapper para tornar a tabela rolável em telas pequenas */
+.table-responsive-wrapper {
+    overflow-x: auto;
+    width: 100%;
+    -webkit-overflow-scrolling: touch; /* Rolagem suave em iOS */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.tabela-agendamentos {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    min-width: 800px; /* Força a rolagem em vez de quebrar o layout */
+}
+.tabela-agendamentos th, .tabela-agendamentos td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.tabela-agendamentos th {
+    background-color: #f8f9fa;
+    color: #34495e;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.tabela-agendamentos tr:last-child td {
+    border-bottom: none;
+}
+
+.tabela-agendamentos tr:hover {
+    background-color: #f1f3f5;
+}
+
+/* Status de Agendamento */
+.status {
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+    text-align: center;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.status.confirmado { background-color: #0288d1; }
+.status.concluido { background-color: #388e3c; }
+.status.cancelado-pelo-usuario { background-color: #f57c00; }
+.status.cancelado-pelo-admin { background-color: #d32f2f; }
+.status.remarcado { background-color: #7b1fa2; }
+
+/* Botões de Ação na Tabela */
+.acoes-botoes {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.btn-acao {
+    padding: 6px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.btn-acao:hover { opacity: 0.85; }
+.btn-acao.remarcar { background-color: #7E9976; }
+.btn-acao.cancelar { background-color: #c17c99; }
+.btn-acao i { font-size: 16px; }
+
+
+/* =================================================== */
+/* --- 8. MENSAGENS E FEEDBACK --- */
+/* =================================================== */
+
+.form-description {
+    text-align: center;
+    margin-bottom: 20px;
+    line-height: 1.5;
+    color: #734653;
+}
+
+.mensagem-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.mensagem-sucesso, .mensagem-erro {
+    font-weight: bold;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid;
+}
+.mensagem-sucesso { color: #388e3c; background-color: #e8f5e9; border-color: #a5d6a7; }
+.mensagem-erro { color: #d32f2f; background-color: #ffcdd2; border-color: #ef9a9a; }
+
+.sem-agendamentos {
+    text-align: center;
+    font-size: 18px;
+    margin: 40px 0;
+    color: #734653;
+}
+
+.painel-botoes {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.voltar-link {
+    text-align: center;
+    margin-top: 25px;
+}
+
+
+/* =================================================== */
+/* --- 9. MEDIA QUERIES PARA RESPONSIVIDADE --- */
+/* =================================================== */
+
+/* Tablets e Desktops Menores (até 992px) */
+@media (min-width: 768px) {
+    .dashboard-columns {
+        grid-template-columns: 2fr 1fr; /* Duas colunas */
+    }
+
+    .slide-content-perfil {
+        flex-direction: row; /* Lado a lado */
+        text-align: left;
+        gap: 35px;
+    }
+
+    .slide-image-perfil {
+        width: 150px;
+        height: 150px;
+    }
+}
+
+/* Telas pequenas, como celulares (até 767px) */
+@media (max-width: 767px) {
+    .dashboard-body {
+        background-color: #fff; /* Fundo branco para não carregar imagem */
+    }
+
+    .dashboard-container,
+    .agendar-container,
+    .container-largo {
+        margin: 0;
+        border-radius: 0;
+        width: 100%;
+        min-height: 100vh;
+        box-shadow: none;
+        padding: 20px 15px;
+    }
+
+    .container { /* Container de login */
+        padding: 30px 20px;
+    }
+
+    .dashboard-header {
+        text-align: center;
+        justify-content: center;
+    }
+}
+
+
+
+/* =================================================== */
+/* --- 1. FONTES E ESTILOS GLOBAIS PARA A LP --- */
+/* =================================================== */
+
+/* Importa as fontes necessárias */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+
+/*
+   Nota: Se este CSS for usado em um arquivo separado,
+   a regra abaixo deve ser aplicada ao body no seu HTML:
+   <body class="landing-body">
+*/
+.landing-body {
+    background-color: #FFF;
+    font-family: 'Poppins', sans-serif;
+    color: #555;
+    line-height: 1.7;
+    display: block; /* Garante que não herde flex de outros estilos */
+    min-height: auto; /* Reseta min-height se houver */
+}
+
+
+/* =================================================== */
+/* --- 2. ESTILOS DA LANDING PAGE (LP) --- */
+/* =================================================== */
+
+/* Container geral da LP */
+.lp-container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* Header */
+.lp-header {
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    padding: 15px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.lp-header .lp-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.lp-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #D96684;
+    text-decoration: none;
+}
+
+.lp-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+.lp-nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.lp-nav a:hover {
+    color: #D96684;
+}
+
+.lp-btn-login {
+    background-color: #D96684;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.lp-btn-login:hover {
+    background-color: #c17c99;
+    transform: scale(1.05);
+}
+
+/* Seção Hero */
+.lp-hero {
+    height: 90vh;
+    background: url('img/background.jpg') center/cover no-repeat;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    margin-top: 68px; /* Altura do header */
+}
+
+.lp-hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.lp-hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.lp-hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+}
+
+.lp-hero p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto 30px;
+}
+
+.lp-btn-cta {
+    background-color: #fff;
+    color: #D96684;
+    padding: 15px 35px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.lp-btn-cta:hover {
+    background-color: #f1f1f1;
+    transform: scale(1.05);
+}
+
+/* Seções Gerais */
+.lp-section {
+    padding: 80px 0;
+}
+
+.lp-section-title {
+    font-family: 'Playfair Display', serif;
+    text-align: center;
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 50px;
+    position: relative;
+}
+
+.lp-section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: #D96684;
+    margin: 10px auto 0;
+}
+
+/* Seção Sobre */
+.lp-about { background-color: #fff; }
+.lp-about-content {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+.lp-about-image {
+    flex-basis: 40%;
+}
+.lp-about-image img {
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+.lp-about-text {
+    flex-basis: 60%;
+}
+.lp-social-icons {
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+}
+.lp-social-icons a {
+    color: #D96684;
+    font-size: 28px;
+    transition: transform 0.3s ease;
+}
+.lp-social-icons a:hover {
+    transform: scale(1.2);
+}
+
+/* Seção Serviços */
+.lp-services { background-color: #fdf8f9; }
+.lp-services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+.lp-service-card {
+    background-color: #fff;
+    padding: 40px 30px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+.lp-service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+.lp-service-card i {
+    font-size: 50px;
+    color: #D96684;
+    margin-bottom: 20px;
+}
+.lp-service-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+/* Seção Galeria */
+.lp-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 15px;
+}
+.lp-gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+.lp-gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+/* Seção Depoimentos */
+.lp-testimonials { background-color: #fdf8f9; }
+.lp-testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+.lp-testimonial-card {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    border-left: 5px solid #D96684;
+}
+.lp-testimonial-card p {
+    font-style: italic;
+    margin-bottom: 15px;
+}
+.lp-testimonial-card h4 {
+    font-weight: 600;
+    color: #333;
+}
+
+/* Seção Final CTA */
+.lp-final-cta {
+    background-color: #D96684;
+    color: #fff;
+    text-align: center;
+}
+.lp-final-cta .lp-section-title { color: #fff; }
+.lp-final-cta .lp-section-title::after { background-color: #fff; }
+.lp-final-cta p {
+    max-width: 500px;
+    margin: 0 auto 30px;
+}
+
+/* Rodapé */
+.lp-footer {
+    background-color: #333;
+    color: #f1f1f1;
+    padding: 20px 0;
+}
+.lp-footer .lp-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.lp-footer .lp-social-icons a {
+    color: #fff;
+    font-size: 22px;
+}
+
+/* Responsividade da Landing Page */
+@media (max-width: 767px) {
+    .lp-header .lp-nav, .lp-header .lp-btn-login {
+        display: none; /* Simplificar para um futuro menu hamburguer */
+    }
+    .lp-hero h1 { font-size: 2.5rem; }
+    .lp-hero p { font-size: 1rem; }
+    .lp-section { padding: 60px 0; }
+    .lp-section-title { font-size: 2rem; }
+    .lp-about-content { flex-direction: column; }
+    .lp-footer .lp-container { flex-direction: column; gap: 15px; }
+}
+
+
+
